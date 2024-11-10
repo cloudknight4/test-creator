@@ -1,0 +1,30 @@
+
+.task-container {
+  margin: auto;
+  width: 85%;
+}
+
+.task-directions {
+  margin-bottom: 2rem;
+}
+
+.task-question-container {
+
+}
+
+.task-number {
+  margin-right: 0.4rem;
+}
+
+.options-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+  align-items: flex-start;
+}
+
+.option-symbol {
+  margin-right: 0.4rem;
+  font-weight: bold;
+}
+

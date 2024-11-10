@@ -1,8 +1,22 @@
+export interface AssessmentSummary {
+  assessmentName: string,
+  assessmentId: string,
+  description: string,
+  numberOfTasks: number,
+  timeToTake: string,
+  numberOfAttempts: string,
+}
+
 export interface Assessment {
   assessmentName: string,
   assessmentId: string,
+  description: string,
   tasks: Task[],
-  order: TaskOrdering
+  order: TaskOrdering,
+  weightedTaskScoring?: any[],
+  isTimed?: boolean, //if null then false
+  canSubmitUnfinished?: boolean, //if null then true
+  numberOfAttempts?: number, // if null only one
 }
 
 export interface Task {
@@ -10,9 +24,19 @@ export interface Task {
   taskType: TaskType,
   directions?: string,
   question: string,
-  solution?: string,
   options?: Option[],
-  selection?: string,
+}
+
+export interface Engagement { //holds user answers
+  assessmentId: string,
+  userId: string,
+  taskResponses: TaskResponse[],
+  numberOfAttempts?: number, // null is zero
+}
+
+export interface TaskResponse {
+  taskId: string,
+  selectedOptionIds?: string[],
   userInput?: string
 }
 
@@ -29,5 +53,6 @@ export enum TaskOrdering {
 export enum TaskType {
   SingleSelection,
   SelectAllThatApply,
+  SelectSpecificNumber,
   UserInput
 }

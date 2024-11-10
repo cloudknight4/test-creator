@@ -1,23 +1,29 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 import { Assessment } from '../model/assessment.model';
 import { assessment1} from '../../dummy-data/assessments-data';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AssessmentService {
 
-  private assessments$: Observable<Assessment[]> = of([assessment1]);
+  private assessment$: Observable<Assessment> = of(assessment1).pipe(
+    tap(() => console.log('###deleteme http called for getting assessments'))
+  );
 
-  constructor() { }
+  private assessment = toSignal(this.assessment$, {rejectErrors: true});
 
-  getAllAssessments() {
-
+  constructor() {
   }
 
-  getAssessment(assessmentId: string) {
+  // getAssessmentSummaries(): {
+  //
+  // }
 
+  getAssessment(assessmentId: string) {
+    return this.assessment;
   }
 
 }

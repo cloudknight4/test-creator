@@ -2,6 +2,30 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.8..
 
+## Design philosophy
+
+#### Glossary
+ - page
+ - app component
+ - state controller
+ - data service
+ - UI element
+
+A **page** contains and organizes **app components** and has no knowledge of anything else.
+
+An **app component** handles calls to **app state** and organizes/manages **UI elements**.
+
+A **state controller** maintains the state of the app and handles the coordination of state between **app components**.
+
+A **data service** handles the calls to the back for sending and retrieving data.
+
+A **UI element** is a prebuilt item that specializes in displaying visuals to the user. It does not have knowledge of state or services or anything outside itself. 
+
+#### CSS on components
+
+No padding or margins are applied to the component itself to allow for ease use in terms of alignment and spacing 
+when imported into a page. 
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

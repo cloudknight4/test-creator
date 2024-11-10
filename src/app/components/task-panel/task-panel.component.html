@@ -1,1 +1,35 @@
-<p>task-panel works!</p>
+@if (task(); as task) {
+  <div class="task-container" style="border: blueviolet solid 2px;">
+
+    @if (task.directions) {
+      <div class="task-directions">{{ task.directions }}</div>
+    }
+    <div class="task-question-container">
+      <span class="task-number">{{ currentTaskNumber() }}.</span>
+      <label class="task-question">{{ task.question }}</label>
+    </div>
+    @if (task.taskType === TaskType.SingleSelection ) {
+      <div>
+
+        <mat-radio-group
+          class="options-group"
+          aria-labelledby="task-question"
+          [(ngModel)]="selectedOptionId">
+          @for (option of task.options; track option.optionId; let i = $index) {
+            <mat-radio-button
+              [value]="option.optionId"
+              (change)="handleRadioButtonChange($event)"
+            >
+              <span class="option-symbol"> {{ i | optionMarker }}.</span>
+              <span class="option-statement">{{ option.statement }}</span>
+            </mat-radio-button>
+          } @empty {
+            <div>no options were provided for this task</div>
+          }
+        </mat-radio-group>
+      </div>
+    }
+  </div>
+} @else {
+  <div> There is no task.</div>
+}

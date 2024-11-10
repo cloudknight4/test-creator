@@ -26,10 +26,11 @@ export const task_howManyStates: Task = {
 }
 
 export const assessment1: Assessment = {
-  assessmentName: 'Test assessment ',
+  assessmentName: 'Test assessment 1',
   assessmentId: 'test-assessment1',
   tasks: [task_primaryColors, task_howManyStates],
-  order: TaskOrdering.OrderOfEntry
+  order: TaskOrdering.OrderOfEntry,
+  description: 'just a dummy test for testing'
 }
 
 

@@ -1,0 +1,37 @@
+<div class="assessment-progress-banner" style="border: green solid 2px;">
+  <div >
+    <div class="current-task-section">
+      Task
+      <span class="current-task-number">{{ taskNumber() }}</span>
+      out of
+      <span class="total-task-number">{{ totalTasks() }}</span>
+    </div>
+    <div>
+      @if (taskNumber() > 1) {
+        <button mat-button (click)="handlePreviousClick()">Previous</button>
+      } @else {
+        <button mat-button disabled>Previous</button>
+      }
+      @if (taskNumber() < totalTasks()) {
+        <button mat-button (click)="handleNextClick()">Next</button>
+      } @else {
+        <button mat-button disabled>Next</button>
+      }
+    </div>
+  </div>
+  <div class="submit-button-section">
+    @if (areAllTasksCompleted()) {
+      <button mat-raised-button>Submit</button>
+    } @else {
+      <button mat-raised-button disabled>Finish all tasks before submitting</button>
+    }
+  </div>
+  <div class="saved-or-unsaved-section">
+    Saved
+  </div>
+  <div class="time-section">
+    <span class="time-taken-value">Time taken: {{ timeTaken() }}</span>
+    <span class="time-remaining-value">Time Remaining: {{ timeRemaining() }}</span>
+    <span class="total-assessment-time-value">Total Time: {{ totalAssessmentTime() }}</span>
+  </div>
+</div>

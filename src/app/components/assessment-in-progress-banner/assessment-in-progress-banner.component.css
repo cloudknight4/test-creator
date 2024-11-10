@@ -1,0 +1,16 @@
+
+.assessment-progress-banner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.current-task-section {
+  display: flex;
+  gap: 0.3rem;
+  padding-right: 2rem;
+}
+
+.time-section {
+  display: flex;
+  gap: 3rem;
+}
