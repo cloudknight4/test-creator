@@ -1,5 +1,5 @@
-import { Component, inject, input } from '@angular/core';
-import { Task, TaskType } from '../../model/assessment.model';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { TaskType } from '../../model/assessment.model';
 import { OptionMarkerPipe } from '../../pipes/option-marker.pipe';
 import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
@@ -14,24 +14,31 @@ import { AssessmentInProgressStateService } from '../../services/assessment-in-p
     FormsModule
   ],
   templateUrl: './task-panel.component.html',
-  styleUrl: './task-panel.component.css'
+  styleUrl: './task-panel.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TaskPanelComponent {
+export class TaskPanelComponent implements OnInit {
   private inProgressState = inject(AssessmentInProgressStateService);
+
   protected readonly TaskType = TaskType;
   currentTaskNumber = this.inProgressState.currentTaskNumber;
   task = this.inProgressState.task;
 
-  currentTaskResponse_SingleSelect = this.inProgressState.currentTaskResponse_SingleSelect;
+  radioButtonSelection: string | undefined = undefined;
 
-  selectedOptionId?: string;
 
-  constructor() {
+  constructor() {}
+
+  ngOnInit() {
+
   }
 
-  handleRadioButtonChange($event: any) {
+  handleRadioButtonChangeForSingleSelection($event: any) {
     //console.log('###deleteme $event: ', $event.value);
-    this.currentTaskResponse_SingleSelect.set($event.value)
+    const optionId = $event.value;
+    const task = this.task();
+
+    this.inProgressState.respondToTask_SingleSelect(task, optionId);
   }
 
 }

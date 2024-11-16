@@ -25,14 +25,17 @@ export interface Task {
   directions?: string,
   question: string,
   options?: Option[],
+  taskResponse?: TaskResponse,
+  previousTaskResponsesCount?: number
 }
 
-export interface Engagement { //holds user answers
-  assessmentId: string,
-  userId: string,
-  taskResponses: TaskResponse[],
-  numberOfAttempts?: number, // null is zero
-}
+//possibly don't need
+// export interface InProgressAssessment { //holds user answers
+//   assessment: Assessment
+//   userId: string,
+//   taskIdToTaskResponseMap: Map<string, TaskResponse>,
+//   numberOfAttempts?: number, // null is zero
+// }
 
 export interface TaskResponse {
   taskId: string,

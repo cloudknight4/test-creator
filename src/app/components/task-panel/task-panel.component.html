@@ -14,11 +14,12 @@
         <mat-radio-group
           class="options-group"
           aria-labelledby="task-question"
-          [(ngModel)]="selectedOptionId">
+          [(ngModel)]="radioButtonSelection">
           @for (option of task.options; track option.optionId; let i = $index) {
             <mat-radio-button
               [value]="option.optionId"
-              (change)="handleRadioButtonChange($event)"
+              [checked]="task.taskResponse?.selectedOptionIds?.includes(option.optionId)"
+              (change)="handleRadioButtonChangeForSingleSelection($event)"
             >
               <span class="option-symbol"> {{ i | optionMarker }}.</span>
               <span class="option-statement">{{ option.statement }}</span>
